@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <!--    for update text-->
+        <string name="app_name">កម្មវិធីរបស់ខ្ញុំ</string>
+        <string name="name_introFE">មហាវិទ្យាល័យវិស្វកម្ម</string>
+        <string name="value_register">នេះជាជំហានដំបូងរបស់អ្នកជាមួយយើង!</string>
+        <string name="value_login">មានគណនីរួចហើយឬ?</string>
+        <string name="login_email_hint">អ៊ីមែល</string>
+        <string name="login_password_hint">ពាក្យសម្ងាត់</string>
+        <string name="login_Retypepassword_hint">វាយបញ្ចូលពាក្យសម្ងាត់ម្តងទៀត</string>
+        <string name="login">ចូលគណនី</string>
+        <string name="register">ចុះឈ្មោះ</string>
+        <string name="use_other_methods">ប្រើវិធីសាស្រ្តផ្សេងទៀត</string>
+        <string name="space" translatable="false" />
+
+        <!--    Menu bottom-->
+        <string name="home">ផ្ទះ</string>
+        <string name="favorite">ចូលចិត្ត</string>
+        <string name="profile">ទម្រង់</string>
+        <string name="notification">ការជូនដំណឹង</string>
+        <string name="menu">ម៉ឺនុយ</string>
+        <string name="showing_all">ការបង្ហាញទាំងអស់</string>
+        <string name="now_showing">កំពុងបង្ហាញ</string>
+
+        <string name="navigation_drawer_open">បើកម៉ឺនុយ</string>
+        <string name="navigation_drawer_close">បិទម៉ឺនុយ</string>
+
+        <!--    Test-->
+        <string name="settings_title">ការកំណត់</string>
+        <string name="language_set">កំណត់ភាសា:</string>
+        <string name="theme_set">កំណត់ប្រធានបទ:</string>
+        <string name="toggle_welcome_page">បិទ/បើកទំព័រស្វាគមន៍</string>
+        <string name="toggle_did_you_know">បិទ/បើកបន្ទះ Did You Know?</string>
+        <string name="donation">ការរួមចំណែក</string>
+        <string name="change_gallery_row_counts">ប្ដូរចំនួនជួររូបថត</string>
+        <string name="turn_on_admin_mode">បើកមុខងារអ្នកគ្រប់គ្រង</string>
+        <string name="select_language">ជ្រើសរើសភាសា</string>
+        <string name="cancel">បោះបង់</string>
+        <string name="language_english">ភាសាអង់គ្លេស</string>
+        <string name="language_khmer">ភាសាខ្មែរ</string>
+
+
+
+<!--    <string name="name_introFE">វិស្វកម្មបច្ចេកវិទ្យាពត៌មាន</string>-->
+
+<!--    <string name="showing_all">បង្ហាញទាំងអស់</string>-->
+<!--    <string name="now_showing">កំពុងបង្ហាញ</string>-->
+
+
+<!--    <string name="settings_title">ការកំណត់</string>-->
+<!--    <string name="language_set">ភាសា:</string>-->
+<!--    <string name="theme_set">ប្រព័ន្ធរចនាប័ទ្ម:</string>-->
+<!--    <string name="toggle_welcome_page">បើកទំព័រស្វាគមន៍</string>-->
+<!--    <string name="toggle_did_you_know">បើកបន្ទះ "តើអ្នកដឹងទេ?"</string>-->
+<!--    <string name="donation">ការរួមចំណែក</string>-->
+<!--    <string name="change_gallery_row_counts">ផ្លាស់ប្តូរចំនួនជួររូបភាព</string>-->
+<!--    <string name="turn_on_admin_mode">បើករបៀបអភិបាល</string>-->
+<!--    <string name="select_language">ជ្រើសរើសភាសា</string>-->
+<!--    <string name="cancel">បោះបង់</string>-->
+<!--    <string name="language_english">អង់គ្លេស</string>-->
+<!--    <string name="language_khmer">ខ្មែរ</string>-->
+
+        <string name="like">ចូលចិត្ត</string>
+        <string name="share">ចែករំលែក</string>
+        <string name="download">ទាញយក</string>
+        <string name="report">របាយ៍ការណ៍</string>
+
+</resources>

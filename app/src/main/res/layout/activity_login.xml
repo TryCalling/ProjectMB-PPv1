@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    tools:context=".ui.activity.LoginActivity">
+
+    <ScrollView
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:padding="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    style="@style/viewParent.headerText.NoMode"
+                    android:textColor="@color/primary_color"
+                    android:text="@string/value_login"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_login_hero"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                app:cardBackgroundColor="@color/whiteTextColor"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputEmail"
+                        style="@style/parent"
+                        app:helperTextTextColor="@color/cpb_red"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextEmail"
+                            style="@style/modifiedEditText"
+                            android:drawableEnd="@drawable/baseline_clear_24"
+                            android:drawableStart="@drawable/baseline_email_24"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:textSize="16dp"
+                            android:hint="@string/login_email_hint"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputPassword"
+                        style="@style/parent"
+                        app:helperTextTextColor="@color/cpb_red"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextPassword"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/login_password_hint"
+                            android:drawableEnd="@drawable/baseline_remove_red_eye_24"
+                            android:drawableStart="@drawable/baseline_lock_24"
+                            android:maxLines="1"
+                            android:enabled="true"
+                            android:maxLength="15"
+                            android:textSize="16dp"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/cirLoginButton"
+                        android:text="@string/login"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        style="@style/loginButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/loginViewsMargin" />
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="New User?"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                        <TextView
+                            android:id="@+id/Btn_regi_now"
+                            android:text="Register Now"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_color"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="12"
+                android:gravity="center"
+                android:layout_marginTop="30dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    android:layout_weight="4"/>
+
+                <TextView
+                    style="@style/viewParent.headerText.NoMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_other_methods"
+                    android:layout_weight="2"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    android:layout_weight="4"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    app:cardCornerRadius="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    tools:ignore="MissingConstraints"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="60dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/ic_facebook"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"/>-->
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    app:cardCornerRadius="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    tools:ignore="MissingConstraints"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="60dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/email"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"/>-->
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    app:cardCornerRadius="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    tools:ignore="MissingConstraints"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="60dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/twitter"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"/>-->
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_facebook"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_google_plus"
+                    android:layout_marginLeft="10dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_twitter"
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

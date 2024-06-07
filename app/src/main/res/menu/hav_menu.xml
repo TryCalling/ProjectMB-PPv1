@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navD_Home"
+            android:title="@string/home"
+            android:icon="@drawable/baseline_home_24"/>
+
+        <item
+            android:id="@+id/navD_Fav"
+            android:icon="@drawable/baseline_favorite_border_24"
+            android:title="@string/favorite"/>
+
+        <item
+            android:id="@+id/navD_Help"
+            android:title="Help"
+            android:icon="@drawable/baseline_help_24"/>
+
+        <item
+            android:id="@+id/navD_ContactUs"
+            android:title="Contact Us"
+            android:icon="@drawable/baseline_contacts_24"/>
+
+    </group>
+
+    <item android:title="Profiles">
+
+        <menu>
+            <item
+                android:id="@+id/navD_Setting"
+                android:title="@string/settings_title"
+                android:icon="@drawable/baseline_settings_24"/>
+
+            <item
+                android:id="@+id/navD_Profile"
+                android:icon="@drawable/baseline_account_circle_bbbb"
+                android:title="@string/profile"/>
+
+            <item
+                android:id="@+id/navD_LogOut"
+                android:title="LogOut"
+                android:icon="@drawable/baseline_logout_24"/>
+
+
+        </menu>
+    </item>
+
+
+    <item android:title="Version">
+
+        <menu>
+            <group>
+
+                <item
+                android:id="@+id/navD_Version"
+                android:title="App Version 1.0.0"/>
+
+            </group>
+        </menu>
+
+
+    </item>
+
+</menu>

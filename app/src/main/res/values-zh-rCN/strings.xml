@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProjectMB-PP</string>
+
+    <!--    for update text-->
+    <string name="name_introFE">工程学院</string>
+    <string name="value_register">这是您与我们合作的第一步！</string>
+    <string name="value_login">已经有账户了吗？</string>
+    <string name="login_email_hint">电子邮件</string>
+    <string name="login_password_hint">密码</string>
+    <string name="login_Retypepassword_hint">重新输入密码</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="use_other_methods">使用其他方法</string>
+    <string name="space" translatable="false" />
+
+    <!--    Menu bottom-->
+    <string name="home">首页</string>
+    <string name="favorite">收藏</string>
+    <string name="profile">个人资料</string>
+    <string name="notification">通知</string>
+    <string name="menu">菜单</string>
+    <string name="showing_all">显示全部</string>
+    <string name="now_showing">正在显示</string>
+
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+
+    <!--    Test-->
+    <string name="settings_title">设置</string>
+    <string name="language_set">语言设置:</string>
+    <string name="theme_set">主题设置:</string>
+    <string name="toggle_welcome_page">切换欢迎页面</string>
+    <string name="toggle_did_you_know">切换 Did You Know? 卡片</string>
+    <string name="donation">捐赠</string>
+    <string name="change_gallery_row_counts">更改画廊行数</string>
+    <string name="turn_on_admin_mode">打开管理员模式</string>
+    <string name="select_language">选择语言</string>
+    <string name="cancel">取消</string>
+    <string name="language_english">英语</string>
+    <string name="language_khmer">高棉语</string>
+
+    <string name="like">Like</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="report">Report</string>
+
+</resources>

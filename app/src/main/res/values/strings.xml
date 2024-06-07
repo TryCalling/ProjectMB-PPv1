@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">ProjectMB-PP</string>
+
+    <!--    for update text-->
+    <string name="name_introFE">Faculty of Engineering</string>
+    <string name="value_register" translatable="false">Here’s\nyour first\nstep with \nus!</string>
+    <string name="value_login" translatable="false">Already \nhave an \nAccount?</string>
+    <string name="login_email_hint" translatable="false">Email</string>
+    <string name="login_password_hint" translatable="false">Password</string>
+    <string name="login_Retypepassword_hint" translatable="false">RetypePassword</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="register" translatable="false">Register</string>
+    <string name="use_other_methods" translatable="false">Use other Methods</string>
+    <string name="space" translatable="false" />
+
+    <!--    Menu bottom-->
+    <string name="home" translatable="false">Home</string>
+    <string name="favorite" translatable="false">Favorite</string>
+    <string name="profile" translatable="false">Profile</string>
+    <string name="notification" translatable="false">Notification</string>
+    <string name="menu" translatable="false">Menu</string>
+    <string name="showing_all">Showing All</string>
+    <string name="now_showing">Now Showing</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close Navigation Drawer</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="language_set">Language set:</string>
+    <string name="theme_set">Theme set:</string>
+    <string name="toggle_welcome_page">Toggle Welcome Page</string>
+    <string name="toggle_did_you_know">Toggle Did You Know? card</string>
+    <string name="donation">Donation</string>
+    <string name="change_gallery_row_counts">Change Gallery Row Counts</string>
+    <string name="turn_on_admin_mode">Turn on Admin Mode</string>
+    <string name="select_language">Select Language</string>
+    <string name="cancel">Cancel</string>
+    <string name="language_english">English</string>
+    <string name="language_khmer">Khmer</string>
+
+    <string name="like">Like</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="report">Report</string>
+
+
+
+
+</resources>

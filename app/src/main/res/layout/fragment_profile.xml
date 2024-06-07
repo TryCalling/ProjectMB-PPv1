@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activity.fragment.ProfileFragment">
+
+    <RelativeLayout
+        android:id="@+id/cardPF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:background="@color/white500"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/layoutPF"
+                    app:cardCornerRadius="100dp"
+                    android:layout_width="135dp"
+                    android:layout_height="135dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageViewProfile"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        android:layout_centerHorizontal="true" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/layoutUpdatePF"
+                    android:layout_alignParentBottom="true"
+                    app:cardBackgroundColor="@color/white300"
+                    android:layout_marginStart="100dp"
+                    app:cardCornerRadius="100dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/baseline_camera_alt_24"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textName"
+                android:text=""
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="180dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textEmail"
+                android:hint="Email"
+                app:helperTextTextColor="@color/black"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="18dp"
+                    android:drawableStart="@drawable/baseline_email_colorblue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textNBPhone"
+                android:hint="Mobile"
+                app:helperTextTextColor="@color/black"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="18dp"
+                    android:drawableStart="@drawable/baseline_phone_colorblue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpdate"
+                android:text="UPDATE"
+                android:textSize="18dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white"
+                android:background="@color/primary_color"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="50dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+</ScrollView>
