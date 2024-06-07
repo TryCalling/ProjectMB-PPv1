@@ -1,1 +1,3 @@
-Dear Everyone I'm new Developer Android. 
+Dear Everyone, I'm a new Developer of Android. 
+
+Please help share your experience about android....!
