@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.projectmb_pp.R
 import com.example.projectmb_pp.databinding.ActivityMainBinding
-import com.example.projectmb_pp.repository.LikedItemsRepository
+import com.example.projectmb_pp.repository.SavedItemsRepository
 import com.example.projectmb_pp.ui.activity.fragment.ContactUsFragment
 import com.example.projectmb_pp.ui.activity.fragment.FavoriteFragment
 import com.example.projectmb_pp.ui.activity.fragment.HomeFragment
@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var db: FirebaseFirestore
     private var callback: OnBackPressedCallback? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         // Initialize LikedItemsRepository
-        LikedItemsRepository.initialize(applicationContext)
+        SavedItemsRepository.initialize(applicationContext)
 
         onBackPressedDispatcher.addCallback(this, callback!!)
 
@@ -65,7 +64,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Initialize Firebase components
         db = FirebaseFirestore.getInstance()
-
 //        Style ti 1
 //            val bottomNavigationView = binding.btnnavView
 //            bottomNavigationView.setOnItemSelectedListener { ... }
@@ -95,7 +93,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
         replaceFragment(HomeFragment())
-
 
         //set click open navigationLayOut
         binding.navigationDrawer.setOnClickListener {

@@ -98,6 +98,13 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:src="@drawable/baseline_thumb_up_alt_24" /> &lt;!&ndash; Default icon &ndash;&gt;-->
 
+                    <TextView
+                        android:id="@+id/txtCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="19dp"
+                        android:layout_marginStart="2sp"
+                        android:textColor="@color/white"
+                        android:text="0"/>
 
                     <TextView
                         android:id="@+id/likeOrUnlikeCount"
@@ -105,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/like"
                         android:textColor="@android:color/white"
-                        android:layout_marginStart="4dp" />
+                        android:layout_marginStart="1dp" />
 
                     <View
                         android:layout_width="0.8dp"

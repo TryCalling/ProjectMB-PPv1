@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment
 import com.example.projectmb_pp.R
 import com.example.projectmb_pp.databinding.FragmentDetailMvBinding
 import com.example.projectmb_pp.model.Property
-import com.example.projectmb_pp.repository.LikedItemsRepository
+import com.example.projectmb_pp.repository.LikeItemsRepository
+import com.example.projectmb_pp.repository.SavedItemsRepository
 
 class Detail_MV_Fragment : Fragment() {
 
@@ -44,57 +45,98 @@ class Detail_MV_Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize the repository
-        LikedItemsRepository.initialize(requireContext())
+        LikeItemsRepository.initialize(requireContext())
+        SavedItemsRepository.initialize(requireContext())
 
         // Retrieve property object from arguments
         property = arguments?.getParcelable(ARG_PROPERTY) ?: return
 
-        // Check if the property is liked
-        val isLiked = LikedItemsRepository.getLikedItems().contains(property)
-        updateLikeButton(isLiked)
+        // Restore the liked state and like count
+        property.isLiked = LikeItemsRepository.isLiked(property.id)
+        property.likeCount = LikeItemsRepository.getLikeCount(property.id)
 
-        // Set title and description
-        binding.textViewTitle.text = property.title
-        binding.textViewDescription.text = property.synopsis
+        // Update UI with property details
+        updateUI()
 
-        // WebView Setup
-        setupWebView(property.movie_url)
-
-//        // Handle like button click
-//        binding.likeButton.setOnClickListener {
-//            LikedItemsRepository.addLikedItem(property)
-//            updateLikeButton(true)
-//        }
-//
-//        // Handle unlike button click
-//        binding.unlikeButton.setOnClickListener {
-//            LikedItemsRepository.removeLikedItem(property)
-//            updateLikeButton(false)
-//            // You might want to navigate back to the previous screen or update UI accordingly
-//            requireActivity().supportFragmentManager.popBackStack()
-//        }
+        // Check if the property is saved
+        val isSaved = SavedItemsRepository.getSavedItems().contains(property)
+        updateSaveButton(isSaved)
 
         // Handle like button click
-        binding.saveButton.setOnClickListener {
-            if (isLiked) {
-                LikedItemsRepository.removeLikedItem(property)
-                updateLikeButton(false)
-            } else {
-                LikedItemsRepository.addLikedItem(property)
-                updateLikeButton(true)
+        binding.likeButton.setOnClickListener {
+            if (!property.isLiked) {
+                property.likeCount++
+                property.isLiked = true
+                LikeItemsRepository.setLikeCount(property.id, property.likeCount)
+                LikeItemsRepository.setLiked(property.id, true)
+                updateLikeDislikeCounts()
+                updateLikeButtonIcon()
+                Toast.makeText(context, "Liked Successful", Toast.LENGTH_SHORT).show()
+
             }
         }
 
+        // Handle unlike button click
+        binding.unlikeButton.setOnClickListener {
+            if (property.isLiked && property.likeCount > 0) {
+                property.likeCount--
+                property.isLiked = false
+                LikeItemsRepository.setLikeCount(property.id, property.likeCount)
+                LikeItemsRepository.setLiked(property.id, false)
+                updateLikeDislikeCounts()
+                updateLikeButtonIcon()
+                Toast.makeText(context, "Unliked Successful", Toast.LENGTH_SHORT).show()
+            }
+        }
 
+        // Handle save button click
+        binding.saveButton.setOnClickListener {
+            if (isSaved) {
+                SavedItemsRepository.removeSavedItem(property)
+                updateSaveButton(false)
+                Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
+            } else {
+                SavedItemsRepository.addLikedItem(property)
+                updateSaveButton(true)
+                Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
-    private fun updateLikeButton(isLiked: Boolean) {
-        if (isLiked) {
+    private fun updateUI() {
+        // Set title and description
+        binding.textViewTitle.text = property.title
+        binding.textViewDescription.text = property.synopsis
+        // Update like and dislike counts
+        updateLikeDislikeCounts()
+        updateLikeButtonIcon()
+        // Update save button state
+        updateSaveButton(SavedItemsRepository.getSavedItems().contains(property))
+        // WebView Setup
+        setupWebView(property.movie_url)
+    }
+
+    private fun updateLikeDislikeCounts() {
+//        binding.txtCount.text = property.likeCount.toString()
+        binding.txtCount.text = "${property.likeCount} Like"
+
+        // Update dislike count TextView if you have one
+        // binding.dislikeCountText.text = property.dislikeCount.toString()
+    }
+
+    private fun updateLikeButtonIcon() {
+        if (property.isLiked) {
+            binding.likeButton.setImageResource(R.drawable.baseline_thumb_up_alt_24) // Liked icon
+        } else {
+            binding.likeButton.setImageResource(R.drawable.baseline_thumb_up_off_alt_24) // Unliked icon
+        }
+    }
+
+    private fun updateSaveButton(isSaved: Boolean) {
+        if (isSaved) {
             binding.saveButton.setImageResource(R.drawable.baseline_favorite_24) // Liked icon
-            Toast.makeText(context, "Saved Successful", Toast.LENGTH_SHORT).show()
         } else {
             binding.saveButton.setImageResource(R.drawable.baseline_favorite_whrite_24) // Unliked icon
-            Toast.makeText(context, "Unsaved Successful", Toast.LENGTH_SHORT).show()
         }
     }
 

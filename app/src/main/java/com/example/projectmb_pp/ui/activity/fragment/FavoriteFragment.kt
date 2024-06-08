@@ -10,7 +10,7 @@ import com.example.projectmb_pp.R
 import com.example.projectmb_pp.adapter.FavoriteAdapter
 import com.example.projectmb_pp.databinding.FragmentFavoriteBinding
 import com.example.projectmb_pp.model.Property
-import com.example.projectmb_pp.repository.LikedItemsRepository
+import com.example.projectmb_pp.repository.SavedItemsRepository
 
 class FavoriteFragment : Fragment() {
 
@@ -37,7 +37,7 @@ class FavoriteFragment : Fragment() {
 //        })
 
         // Initialize RecyclerView and Adapter
-        favoriteAdapter = FavoriteAdapter(LikedItemsRepository.getLikedItems().toList(), { property ->
+        favoriteAdapter = FavoriteAdapter(SavedItemsRepository.getSavedItems().toList(), { property ->
             showDetailScreen(property)
         }, { property ->
             updateList()
@@ -50,7 +50,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun updateList() {
-        favoriteAdapter.updateData(LikedItemsRepository.getLikedItems().toList())
+        favoriteAdapter.updateData(SavedItemsRepository.getSavedItems().toList())
     }
 
     private fun showDetailScreen(property: Property) {

@@ -6,10 +6,10 @@ import com.example.projectmb_pp.model.Property
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-object LikedItemsRepository {
+object SavedItemsRepository {
 
-    private const val PREFERENCE_NAME = "LikedItems"
-    private const val KEY_LIKED_ITEMS = "likedItems"
+    private const val PREFERENCE_NAME = "SavedItems"
+    private const val KEY_LIKED_ITEMS = "SavedItems"
 
     private lateinit var sharedPreferences: SharedPreferences
     private val gson = Gson()
@@ -19,18 +19,19 @@ object LikedItemsRepository {
     }
 
     fun addLikedItem(property: Property) {
-        val likedItems = getLikedItems().toMutableSet()
-        likedItems.add(property)
-        saveLikedItems(likedItems)
+        val savedItems = getSavedItems().toMutableSet()
+        savedItems.remove(property)
+        savedItems.add(property)
+        saveLikedItems(savedItems)
     }
 
-    fun removeLikedItem(property: Property) {
-        val likedItems = getLikedItems().toMutableSet()
-        likedItems.remove(property)
-        saveLikedItems(likedItems)
+    fun removeSavedItem(property: Property) {
+        val savedItems = getSavedItems().toMutableSet()
+        savedItems.remove(property)
+        saveLikedItems(savedItems)
     }
 
-    fun getLikedItems(): Set<Property> {
+    fun getSavedItems(): Set<Property> {
         val jsonString = sharedPreferences.getString(KEY_LIKED_ITEMS, null)
         return if (jsonString != null) {
             gson.fromJson(jsonString, object : TypeToken<Set<Property>>() {}.type)
@@ -42,5 +43,9 @@ object LikedItemsRepository {
     private fun saveLikedItems(likedItems: Set<Property>) {
         val jsonString = gson.toJson(likedItems)
         sharedPreferences.edit().putString(KEY_LIKED_ITEMS, jsonString).apply()
+    }
+
+    fun getLikedItemById(id: Int): Property? {
+        return getSavedItems().find { it.id == id }
     }
 }

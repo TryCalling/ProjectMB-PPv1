@@ -16,23 +16,26 @@ data class Property(
     val updated_at: String,
     val movie_url: String,
     val genre: Genre,
+    var likeCount: Int = 0,
+    var isLiked: Boolean = false,
     var isLoading: Boolean = false
 
 ) : Parcelable {
-
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readInt(),
         parcel.readString() ?: "",
-        parcel.readInt(), // Added readInt() for genre_id
+        parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readParcelable(Genre::class.java.classLoader) ?: Genre(0, ""),
-        parcel.readByte() != 0.toByte()
+        parcel.readInt(),  // read the likeCount
+        parcel.readByte() != 0.toByte(),  // read the isLiked
+        parcel.readByte() != 0.toByte()  // read the isLoading
     )
 
     override fun describeContents(): Int {
@@ -50,7 +53,8 @@ data class Property(
         dest.writeString(created_at)
         dest.writeString(updated_at)
         dest.writeString(movie_url)
-        dest.writeParcelable(genre, flags)
+        dest.writeInt(likeCount)
+        dest.writeByte(if (isLiked) 1 else 0)
         dest.writeByte(if (isLoading) 1 else 0)
     }
 
