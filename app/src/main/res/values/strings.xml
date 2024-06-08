@@ -20,7 +20,7 @@
     <string name="notification" translatable="false">Notification</string>
     <string name="menu" translatable="false">Menu</string>
     <string name="showing_all">Showing All</string>
-    <string name="now_showing">Now Showing</string>
+    <string name="show_all">Show All</string>
 
     <string name="navigation_drawer_open" translatable="false">Open Navigation Drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close Navigation Drawer</string>
@@ -42,6 +42,7 @@
     <string name="share">Share</string>
     <string name="download">Download</string>
     <string name="report">Report</string>
+
 
 
 

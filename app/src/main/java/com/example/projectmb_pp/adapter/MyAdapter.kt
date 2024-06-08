@@ -1,3 +1,6 @@
+package com.example.projectmb_pp.adapter
+
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +18,8 @@ class MyAdapter(
     companion object {
         private const val VIEW_TYPE_LINEAR = 1
         private const val VIEW_TYPE_GRID = 2
+        private const val BASE_URL = "http://13.228.32.137:8888/"
+
     }
 
     inner class LinearViewHolder(private val binding: ItemViewShowingLinearBinding) :
@@ -24,8 +29,11 @@ class MyAdapter(
             binding.titleTextViewL.text = property.title
             binding.descriptionTextViewL.text = property.synopsis
 
+            val fullUrl = BASE_URL + property.poster_url
+            Log.d("MyAdapter", "Loading image URL: ${property.poster_url}")
+
             Glide.with(binding.root)
-                .load(property.poster_url)
+                .load(fullUrl)
                 .centerCrop()
                 .into(binding.imageViewL)
 
@@ -42,8 +50,11 @@ class MyAdapter(
             binding.tvTitle.text = property.title
             binding.tvDescription.text = property.synopsis
 
+            val fullUrl = BASE_URL + property.poster_url
+            Log.d("MyAdapter", "Loading image URL: $fullUrl")
+
             Glide.with(binding.root)
-                .load(property.poster_url)
+                .load(fullUrl)
                 .centerCrop()
                 .into(binding.imageView)
 

@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 //private const val BASE_URL = "https://fakestoreapi.com/products/"
 //private const val BASE_URL = "https://raw.githubusercontent.com/bikashthapa01/myvideos-android-app/master/data.json"
@@ -18,6 +19,9 @@ interface ApiService{
 
     @GET("/movie/index")
     fun getAllData(): Call<List<Property>>
+
+    @GET("/genres/{id}/show")
+    fun getMoviesByGenre(@Path("id") genreId: Int): Call<List<Property>>
 
 }
 

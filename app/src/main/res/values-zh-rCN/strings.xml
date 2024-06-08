@@ -21,7 +21,7 @@
     <string name="notification">通知</string>
     <string name="menu">菜单</string>
     <string name="showing_all">显示全部</string>
-    <string name="now_showing">正在显示</string>
+    <string name="show_all">正在显示</string>
 
     <string name="navigation_drawer_open">打开导航抽屉</string>
     <string name="navigation_drawer_close">关闭导航抽屉</string>

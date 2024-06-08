@@ -20,7 +20,7 @@
         <string name="notification">ការជូនដំណឹង</string>
         <string name="menu">ម៉ឺនុយ</string>
         <string name="showing_all">ការបង្ហាញទាំងអស់</string>
-        <string name="now_showing">កំពុងបង្ហាញ</string>
+        <string name="show_all">បង្ហាញទាំងអស់</string>
 
         <string name="navigation_drawer_open">បើកម៉ឺនុយ</string>
         <string name="navigation_drawer_close">បិទម៉ឺនុយ</string>

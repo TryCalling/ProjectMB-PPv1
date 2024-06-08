@@ -1,11 +1,13 @@
 package com.example.projectmb_pp.ui.activity.fragment
 
-import MyAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.projectmb_pp.R
+import com.example.projectmb_pp.adapter.MyAdapter
 import com.example.projectmb_pp.databinding.FragmentHomeBinding
 import com.example.projectmb_pp.model.Property
 import com.example.projectmb_pp.service.Api
@@ -24,12 +27,10 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var myAdapter: MyAdapter
-
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private var isLinearView = false
-
+    private var showingAll = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,6 +91,45 @@ class HomeFragment : Fragment() {
             toggleLayoutManager()
         }
 
+        // Set up "Show All" button click
+//        binding.txshowAll.setOnClickListener {
+//            if (showingAll) {
+//                getAllData()
+//                binding.txshowAll.text = "Show All"
+//            } else {
+//                fetchHorrorMovies()
+//            }
+//            showingAll = !showingAll
+//        }
+        // Set up Spinner
+        setupSpinner()
+
+    }
+
+    private fun setupSpinner() {
+        val spinner: Spinner = binding.genreSpinner
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.genre_array,
+            R.layout.spinner_item // Custom layout for spinner items
+
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                when (position) {
+                    0 -> getAllData() // Show All
+                    1 -> fetchMoviesByGenre(1, "Horror Movies") // Horror
+                    2 -> fetchMoviesByGenre(2, "Funny Movies") // Funny
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Do nothing
+            }
+        }
     }
 
 //    private fun toggleLayoutManager() {
@@ -110,7 +150,6 @@ class HomeFragment : Fragment() {
         myAdapter.setLinearView(isLinearView)
     }
 
-
 //    private fun getAllData() { old
 //        Api.retrofitService.getAllData().enqueue(object : Callback<List<Property>> {
 //            override fun onResponse(
@@ -130,7 +169,6 @@ class HomeFragment : Fragment() {
 //        })
 //    }
 
-    //new
     private fun getAllData() {
         Api.retrofitService.getAllData().enqueue(object : Callback<List<Property>> {
             override fun onResponse(
@@ -155,6 +193,51 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
+    private fun fetchMoviesByGenre(genreId: Int, genreName: String) {
+        Api.retrofitService.getMoviesByGenre(genreId).enqueue(object : Callback<List<Property>> {
+            override fun onResponse(call: Call<List<Property>>, response: Response<List<Property>>) {
+                if (response.isSuccessful) {
+                    val properties = response.body()
+                    if (properties != null) {
+                        Log.d("HomeFragment", "$genreName movies fetched successfully: ${properties.size} items")
+                        myAdapter.updateData(properties.map { it.copy(isLoading = false) })
+                    } else {
+                        Log.e("HomeFragment", "Response body is null")
+                    }
+                } else {
+                    Log.e("HomeFragment", "Failed to fetch $genreName movies: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Property>>, t: Throwable) {
+                Log.e("HomeFragment", "Error fetching $genreName movies", t)
+            }
+        })
+    }
+
+//    private fun fetchHorrorMovies() {
+//        Api.retrofitService.getMoviesByGenre(1).enqueue(object : Callback<List<Property>> {
+//            override fun onResponse(call: Call<List<Property>>, response: Response<List<Property>>) {
+//                if (response.isSuccessful) {
+//                    val properties = response.body()
+//                    if (properties != null) {
+//                        Log.d("HomeFragment", "Horror movies fetched successfully: ${properties.size} items")
+//                        myAdapter.updateData(properties.map { it.copy(isLoading = false) })
+//                        binding.txshowAll.text = "Horror MV"
+//                    } else {
+//                        Log.e("HomeFragment", "Response body is null")
+//                    }
+//                } else {
+//                    Log.e("HomeFragment", "Failed to fetch horror movies: ${response.message()}")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<Property>>, t: Throwable) {
+//                Log.e("HomeFragment", "Error fetching horror movies", t)
+//            }
+//        })
+//    }
 
     private fun showDetailScreen(property: Property) {
         val detailFragment = Detail_MV_Fragment.newInstance(property)

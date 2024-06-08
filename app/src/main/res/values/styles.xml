@@ -68,6 +68,12 @@
         <item name="cardCornerRadius">50dp</item>
     </style>
 
+        <!-- Other string resources -->
+    <string-array name="genre_array">
+        <item>Show All</item>
+        <item>Horror</item>
+        <item>Funny</item>
+    </string-array>
 
 
 </resources>

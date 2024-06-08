@@ -1,5 +1,6 @@
 package com.example.projectmb_pp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,10 @@ class FavoriteAdapter(
     private val onItemClick: (Property) -> Unit,
     private val onItemUnliked: (Property) -> Unit
 
+
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
+
+    private val BASE_URL = "http://13.228.32.137:8888/" // Add your base URL here
 
     inner class FavoriteViewHolder(private val binding: ItemViewFavmoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -21,9 +25,13 @@ class FavoriteAdapter(
             binding.titleMV.text = property.title
             binding.textView4.text = property.synopsis
 
+            val fullUrl = BASE_URL + property.poster_url
+            Log.d("MyAdapter", "Loading image URL: ${property.poster_url}")
+
+
             // Load image if needed
             Glide.with(binding.root)
-                .load(property.poster_url)
+                .load(fullUrl)
                 .centerCrop()
                 .into(binding.imageView2)
 
