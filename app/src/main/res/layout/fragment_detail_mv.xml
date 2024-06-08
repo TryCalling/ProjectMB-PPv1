@@ -100,7 +100,7 @@
 
 
                     <TextView
-                        android:id="@+id/unlikeCount"
+                        android:id="@+id/likeOrUnlikeCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/like"
@@ -120,6 +120,30 @@
                         android:layout_marginStart="3dp"
                         android:src="@drawable/baseline_thumb_down_off_alt_24" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="@drawable/rounded_background"
+                    android:layout_marginStart="8dp">
+
+                    <ImageView
+                        android:id="@+id/saveButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/baseline_favorite_whrite_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/save"
+                        android:textColor="@android:color/white"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -183,7 +207,7 @@
                         android:src="@drawable/baseline_assistant_photo_24" />
 
                     <TextView
-                        android:id="@+id/likeCount"
+                        android:id="@+id/report"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/report"

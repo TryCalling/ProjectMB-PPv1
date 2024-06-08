@@ -60,28 +60,41 @@ class Detail_MV_Fragment : Fragment() {
         // WebView Setup
         setupWebView(property.movie_url)
 
+//        // Handle like button click
+//        binding.likeButton.setOnClickListener {
+//            LikedItemsRepository.addLikedItem(property)
+//            updateLikeButton(true)
+//        }
+//
+//        // Handle unlike button click
+//        binding.unlikeButton.setOnClickListener {
+//            LikedItemsRepository.removeLikedItem(property)
+//            updateLikeButton(false)
+//            // You might want to navigate back to the previous screen or update UI accordingly
+//            requireActivity().supportFragmentManager.popBackStack()
+//        }
+
         // Handle like button click
-        binding.likeButton.setOnClickListener {
-            LikedItemsRepository.addLikedItem(property)
-            updateLikeButton(true)
+        binding.saveButton.setOnClickListener {
+            if (isLiked) {
+                LikedItemsRepository.removeLikedItem(property)
+                updateLikeButton(false)
+            } else {
+                LikedItemsRepository.addLikedItem(property)
+                updateLikeButton(true)
+            }
         }
 
-        // Handle unlike button click
-        binding.unlikeButton.setOnClickListener {
-            LikedItemsRepository.removeLikedItem(property)
-            updateLikeButton(false)
-            // You might want to navigate back to the previous screen or update UI accordingly
-            requireActivity().supportFragmentManager.popBackStack()
-        }
+
     }
 
     private fun updateLikeButton(isLiked: Boolean) {
         if (isLiked) {
-            binding.likeButton.setImageResource(R.drawable.baseline_thumb_up_alt_24) // Liked icon
-            Toast.makeText(context, "Liked Successful", Toast.LENGTH_SHORT).show()
+            binding.saveButton.setImageResource(R.drawable.baseline_favorite_24) // Liked icon
+            Toast.makeText(context, "Saved Successful", Toast.LENGTH_SHORT).show()
         } else {
-            binding.likeButton.setImageResource(R.drawable.baseline_thumb_up_off_alt_24) // Unliked icon
-            Toast.makeText(context, "Unliked Successful", Toast.LENGTH_SHORT).show()
+            binding.saveButton.setImageResource(R.drawable.baseline_favorite_whrite_24) // Unliked icon
+            Toast.makeText(context, "Unsaved Successful", Toast.LENGTH_SHORT).show()
         }
     }
 

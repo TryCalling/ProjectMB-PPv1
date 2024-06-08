@@ -61,6 +61,7 @@
 <!--    <string name="language_khmer">ខ្មែរ</string>-->
 
         <string name="like">ចូលចិត្ត</string>
+        <string name="save">រក្សាទុក</string>
         <string name="share">ចែករំលែក</string>
         <string name="download">ទាញយក</string>
         <string name="report">របាយ៍ការណ៍</string>

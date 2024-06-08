@@ -13,7 +13,6 @@ class FavoriteAdapter(
     private val onItemClick: (Property) -> Unit,
     private val onItemUnliked: (Property) -> Unit
 
-
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
     private val BASE_URL = "http://13.228.32.137:8888/" // Add your base URL here
@@ -27,7 +26,6 @@ class FavoriteAdapter(
 
             val fullUrl = BASE_URL + property.poster_url
             Log.d("MyAdapter", "Loading image URL: ${property.poster_url}")
-
 
             // Load image if needed
             Glide.with(binding.root)
