@@ -1,42 +1,36 @@
-<!-- activity_notification.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/LayoutNotification"
+    android:background="@drawable/bg_color_screen"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:title="Notifications"
-        android:titleTextColor="@android:color/black">
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:background="@color/white"-->
+<!--        android:title="@string/notification"-->
+<!--        android:titleTextColor="@android:color/black">-->
 
         <TextView
+            android:id="@+id/tvNotification"
             android:text="Notification"
             android:textStyle="bold"
             android:textSize="25sp"
-            android:textColor="@color/black"
+            android:padding="10dp"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-    </androidx.appcompat.widget.Toolbar>
-
+<!--    </androidx.appcompat.widget.Toolbar>-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notificationRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:listitem="@layout/item_view_notification"
         android:layout_weight="1" />
-
-    <TextView
-        android:id="@+id/noNotificationsTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No notifications"
-        android:gravity="center"
-        android:visibility="gone"
-        android:textSize="18sp" />
 
 </LinearLayout>

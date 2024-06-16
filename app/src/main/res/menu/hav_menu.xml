@@ -18,12 +18,12 @@
 
         <item
             android:id="@+id/navD_Help"
-            android:title="Help"
+            android:title="@string/help"
             android:icon="@drawable/baseline_help_24"/>
 
         <item
             android:id="@+id/navD_ContactUs"
-            android:title="Contact Us"
+            android:title="@string/contact_us"
             android:icon="@drawable/baseline_contacts_24"/>
 
     </group>
@@ -43,7 +43,7 @@
 
             <item
                 android:id="@+id/navD_LogOut"
-                android:title="LogOut"
+                android:title="@string/logout"
                 android:icon="@drawable/baseline_logout_24"/>
 
 

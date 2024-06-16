@@ -4,11 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Property(
-
     val id: Int,
     val title: String,
     val release_date: String,
-    val duration: Int,
+    val duration: String,
     val synopsis: String,
     val genre_id: Int,
     val poster_url: String,
@@ -25,7 +24,7 @@ data class Property(
         parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readInt(),
+        parcel.readString()?:"",
         parcel.readString() ?: "",
         parcel.readInt(),
         parcel.readString() ?: "",
@@ -33,9 +32,9 @@ data class Property(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readParcelable(Genre::class.java.classLoader) ?: Genre(0, ""),
-        parcel.readInt(),  // read the likeCount
-        parcel.readByte() != 0.toByte(),  // read the isLiked
-        parcel.readByte() != 0.toByte()  // read the isLoading
+        parcel.readInt(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readByte() != 0.toByte()
     )
 
     override fun describeContents(): Int {
@@ -46,9 +45,9 @@ data class Property(
         dest.writeInt(id)
         dest.writeString(title)
         dest.writeString(release_date)
-        dest.writeInt(duration)
+        dest.writeString(duration)
         dest.writeString(synopsis)
-        dest.writeInt(genre_id) // Added writeInt() for genre_id
+        dest.writeInt(genre_id)
         dest.writeString(poster_url)
         dest.writeString(created_at)
         dest.writeString(updated_at)
@@ -68,7 +67,6 @@ data class Property(
         }
     }
 }
-
 data class Genre(
     val id: Int,
     val name: String
@@ -99,3 +97,4 @@ data class Genre(
     }
 
 }
+

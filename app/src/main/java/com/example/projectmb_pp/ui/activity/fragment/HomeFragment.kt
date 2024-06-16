@@ -45,11 +45,20 @@ class HomeFragment : Fragment() {
 
         // ImageSliderView setup
         val imageList = arrayListOf(
-            SlideModel("https://www.wooribank.com.kh/wp-content/uploads/2023/11/Major_Web-2-1.jpg"),
-            SlideModel("https://pbs.twimg.com/media/ECjugfFUIAILg7I.jpg"),
-            SlideModel("https://i.ytimg.com/vi/yNiA6mis7Nk/maxresdefault.jpg"),
-            SlideModel("https://www.retailnews.asia/wp-content/uploads/2015/08/major-cineplex.jpg"),
-            SlideModel("https://coolbeans.sgp1.digitaloceanspaces.com/legend-cinema-prod/c22d5817-ca3c-4e6d-b119-68fd0f15f5f3.jpeg")
+            SlideModel("https://twt-thumbs.washtimes.com/media/image/2022/12/04/gg22-movies-900_c2-0-3003-1750_s1770x1032.jpg?71b58e388ab29c2a7847401d3c7757678ee5e861"),
+            SlideModel("https://www.soundandvision.com/images/styles/600_wide/public/516movies.promo_.jpg"),
+            SlideModel("https://images.thedirect.com/media/article_full/spider-man-no-way-home-blu-ray.jpg"),
+            SlideModel("https://i.ytimg.com/vi/RJoxvXQ7sJs/maxresdefault.jpg"),
+            SlideModel("https://greenhouse.hulu.com/app/uploads/sites/11/Comedy-Movies-for-Kids-Hulu.jpg"),
+            SlideModel("https://static1.srcdn.com/wordpress/wp-content/uploads/2023/11/despicable-me-movies.jpg"),
+            SlideModel("https://i.ebayimg.com/images/g/DdIAAOSwMLdgznPF/s-l1200.webp"),
+            SlideModel("https://img.freepik.com/premium-photo/4k-movie-concept_103577-3976.jpg"),
+
+//            SlideModel("https://www.wooribank.com.kh/wp-content/uploads/2023/11/Major_Web-2-1.jpg"),
+//            SlideModel("https://pbs.twimg.com/media/ECjugfFUIAILg7I.jpg"),
+//            SlideModel("https://i.ytimg.com/vi/yNiA6mis7Nk/maxresdefault.jpg"),
+//            SlideModel("https://www.retailnews.asia/wp-content/uploads/2015/08/major-cineplex.jpg"),
+//            SlideModel("https://coolbeans.sgp1.digitaloceanspaces.com/legend-cinema-prod/c22d5817-ca3c-4e6d-b119-68fd0f15f5f3.jpeg")
         )
         binding.imageSlider.setImageList(imageList, ScaleTypes.CENTER_INSIDE)
 //        // RecyclerView setup LinearView
@@ -122,7 +131,12 @@ class HomeFragment : Fragment() {
                 when (position) {
                     0 -> getAllData() // Show All
                     1 -> fetchMoviesByGenre(1, "Horror Movies") // Horror
-                    2 -> fetchMoviesByGenre(2, "Funny Movies") // Funny
+                    2 -> fetchMoviesByGenre(2, "Love Story") // Funny
+                    3 -> fetchMoviesByGenre(3, "Funny") // Funny
+                    4 -> fetchMoviesByGenre(4, "Anime") // Anime
+                    5 -> fetchMoviesByGenre(5, "Action") // Action
+                    6 -> fetchMoviesByGenre(6, "Adventure") // Adventure
+                    7 -> fetchMoviesByGenre(7, "Romantic") // Romantic
                 }
             }
 

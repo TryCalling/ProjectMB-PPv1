@@ -44,6 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="Movie Description"
                 android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_marginTop="4dp" />
 
         </LinearLayout>

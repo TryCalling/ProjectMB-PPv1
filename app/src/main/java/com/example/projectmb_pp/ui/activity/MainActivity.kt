@@ -44,17 +44,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Add callback for handling back press ========new
+//        // Add callback for handling back press ========new
+//        callback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                // Custom back pressed logic
+//            }
+//        }
+
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Custom back pressed logic
             }
         }
+        onBackPressedDispatcher.addCallback(this, callback!!)
+
 
         // Initialize LikedItemsRepository
         SavedItemsRepository.initialize(applicationContext)
-
-        onBackPressedDispatcher.addCallback(this, callback!!)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -152,6 +158,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return tempContext
     }
 
+    //New
     private fun loadUserData() {
         // Get the current user ID
         val userId = firebaseAuth.currentUser?.uid
@@ -170,16 +177,59 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         val email = documentSnapshot.getString("email")
                         val profileImageUrl = documentSnapshot.getString("profileImageUrl")
 
-                        // Update UI with user's name and email
-                        updateNavigationHeader(name, email, profileImageUrl!!)
+                        // Update UI with user's name and email if profileImageUrl is not null
+                        if (name != null && email != null && profileImageUrl != null) {
+                            updateNavigationHeader(name, email, profileImageUrl)
+                        } else {
+                            // Handle the case where any of the required fields are null
+                            Toast.makeText(this, "User data is incomplete", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        // Handle the case where the document does not exist
+                        Toast.makeText(this, "User document does not exist", Toast.LENGTH_SHORT).show()
                     }
                 }
                 .addOnFailureListener { exception ->
                     // Handle failure
                     Toast.makeText(this, "Failed to load user data", Toast.LENGTH_SHORT).show()
                 }
+        } ?: run {
+            // Handle the case where userId is null
+            Toast.makeText(this, "User is not authenticated", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
+//old
+//    private fun loadUserData() {
+//        // Get the current user ID
+//        val userId = firebaseAuth.currentUser?.uid
+//
+//        // Check if the user ID is not null before proceeding
+//        userId?.let { uid ->
+//            // Get reference to the user document in Firestore
+//            val userRef = db.collection("users").document(uid)
+//
+//            // Retrieve user data
+//            userRef.get()
+//                .addOnSuccessListener { documentSnapshot ->
+//                    if (documentSnapshot.exists()) {
+//                        // Get user's name and email from Firestore
+//                        val name = documentSnapshot.getString("name")
+//                        val email = documentSnapshot.getString("email")
+//                        val profileImageUrl = documentSnapshot.getString("profileImageUrl")
+//
+//                        // Update UI with user's name and email
+//                        updateNavigationHeader(name, email, profileImageUrl!!)
+//                    }
+//                }
+//                .addOnFailureListener { exception ->
+//                    // Handle failure
+//                    Toast.makeText(this, "Failed to load user data", Toast.LENGTH_SHORT).show()
+//                }
+//        }
+//    }
 
     private fun updateNavigationHeader(name: String?, email: String?, cardprofile: String) {
         // Update TextViews in the navigation header with user's name and email

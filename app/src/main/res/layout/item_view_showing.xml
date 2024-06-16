@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:padding="8dp"
+            android:padding="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -60,11 +60,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="This is a title"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 android:textColor="@android:color/black"
                 android:maxLines="1"
                 android:ellipsize="end" />
@@ -74,10 +74,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="This is a description"
-                android:textSize="15sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 android:textColor="@android:color/darker_gray"
                 android:maxLines="1"
                 android:ellipsize="end" />

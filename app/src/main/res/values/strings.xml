@@ -1,29 +1,32 @@
 <resources>
-    <string name="app_name">ProjectMB-PP</string>
+<!--    <string name="app_name">Movies KonKhmer</string>-->
+    <string name="app_name">.NMS Mobile</string>
 
     <!--    for update text-->
-    <string name="name_introFE">Faculty of Engineering</string>
-    <string name="value_register" translatable="false">Here’s\nyour first\nstep with \nus!</string>
-    <string name="value_login" translatable="false">Already \nhave an \nAccount?</string>
-    <string name="login_email_hint" translatable="false">Email</string>
-    <string name="login_password_hint" translatable="false">Password</string>
-    <string name="login_Retypepassword_hint" translatable="false">RetypePassword</string>
-    <string name="login" translatable="false">Login</string>
-    <string name="register" translatable="false">Register</string>
-    <string name="use_other_methods" translatable="false">Use other Methods</string>
-    <string name="space" translatable="false" />
+    <string name="name_introFE">DOT NET MOVIES STEAMING</string>
+<!--    <string name="name_introFE">Faculty of Engineering</string>-->
+    <string name="value_register">Here’s\nyour first\nstep with \nus!</string>
+    <string name="value_login">Already \nhave an \nAccount?</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_Retypepassword_hint">RetypePassword</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="use_other_methods">Use other Methods</string>
 
     <!--    Menu bottom-->
-    <string name="home" translatable="false">Home</string>
-    <string name="favorite" translatable="false">Favorite</string>
-    <string name="profile" translatable="false">Profile</string>
-    <string name="notification" translatable="false">Notification</string>
-    <string name="menu" translatable="false">Menu</string>
-    <string name="showing_all">Showing All</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="profile">Profile</string>
+    <string name="notification">Notification</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="help">Help</string>
+    <string name="logout">Logout</string>
+    <string name="menu">Menu</string>
     <string name="show_all">Show All</string>
 
-    <string name="navigation_drawer_open" translatable="false">Open Navigation Drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Close Navigation Drawer</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
     <string name="settings_title">Settings</string>
     <string name="language_set">Language set:</string>
@@ -40,13 +43,8 @@
 
     <string name="like">Like</string>
     <string name="save">Save</string>
-
     <string name="share">Share</string>
     <string name="download">Download</string>
     <string name="report">Report</string>
-
-
-
-
 
 </resources>

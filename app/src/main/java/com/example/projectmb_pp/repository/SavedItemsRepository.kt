@@ -45,7 +45,7 @@ object SavedItemsRepository {
         sharedPreferences.edit().putString(KEY_LIKED_ITEMS, jsonString).apply()
     }
 
-    fun getLikedItemById(id: Int): Property? {
+    fun getSavedItemById(id: Int): Property? {
         return getSavedItems().find { it.id == id }
     }
 }

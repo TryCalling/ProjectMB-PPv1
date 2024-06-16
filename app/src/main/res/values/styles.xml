@@ -72,7 +72,12 @@
     <string-array name="genre_array">
         <item>Show All</item>
         <item>Horror</item>
+        <item>Love Story</item>
         <item>Funny</item>
+        <item>Anime</item>
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Romantic</item>
     </string-array>
 
 

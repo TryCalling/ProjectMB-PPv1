@@ -11,16 +11,17 @@
         <string name="login">ចូលគណនី</string>
         <string name="register">ចុះឈ្មោះ</string>
         <string name="use_other_methods">ប្រើវិធីសាស្រ្តផ្សេងទៀត</string>
-        <string name="space" translatable="false" />
 
         <!--    Menu bottom-->
-        <string name="home">ផ្ទះ</string>
-        <string name="favorite">ចូលចិត្ត</string>
-        <string name="profile">ទម្រង់</string>
+        <string name="home">ទំព័រដើម</string>
+        <string name="favorite">ចំណូលចិត្ត</string>
+        <string name="profile">ប្រវត្តិរូប</string>
         <string name="notification">ការជូនដំណឹង</string>
         <string name="menu">ម៉ឺនុយ</string>
-        <string name="showing_all">ការបង្ហាញទាំងអស់</string>
         <string name="show_all">បង្ហាញទាំងអស់</string>
+        <string name="contact_us">ទាក់ទងមកពួកយើង</string>
+        <string name="help">ជំនួយ</string>
+        <string name="logout">ចាកចេញ</string>
 
         <string name="navigation_drawer_open">បើកម៉ឺនុយ</string>
         <string name="navigation_drawer_close">បិទម៉ឺនុយ</string>
@@ -65,5 +66,17 @@
         <string name="share">ចែករំលែក</string>
         <string name="download">ទាញយក</string>
         <string name="report">របាយ៍ការណ៍</string>
+
+        <string-array name="genre_array">
+                <item>បង្ហាញទាំងអស់</item>
+                <item>ខ្សែភាពយន្តខ្លាចរន្ធត់</item>
+                <item>រឿងស្នេហា</item>
+                <item>កំប្លែង</item>
+                <item>អាណឹមេ</item>
+                <item>វិមានកុំព្យូទ័រ</item>
+                <item>វាយលុក</item>
+                <item>រ៉ូមែនទិក</item>
+        </string-array>
+
 
 </resources>

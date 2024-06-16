@@ -31,6 +31,7 @@ class Detail_MV_Fragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+
     }
 
     override fun onCreateView(
@@ -107,6 +108,8 @@ class Detail_MV_Fragment : Fragment() {
         // Set title and description
         binding.textViewTitle.text = property.title
         binding.textViewDescription.text = property.synopsis
+        binding.releaseDate.text = property.release_date
+
         // Update like and dislike counts
         updateLikeDislikeCounts()
         updateLikeButtonIcon()

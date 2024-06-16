@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "114229310274",
+    "firebase_url": "https://login-and-register-projectmad-default-rtdb.firebaseio.com",
     "project_id": "login-and-register-projectmad",
     "storage_bucket": "login-and-register-projectmad.appspot.com"
   },

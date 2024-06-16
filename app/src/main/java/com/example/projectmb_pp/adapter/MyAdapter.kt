@@ -28,6 +28,7 @@ class MyAdapter(
         fun bind(property: Property) {
             binding.titleTextViewL.text = property.title
             binding.descriptionTextViewL.text = property.synopsis
+            binding.durationTime.text = property.duration
 
             val fullUrl = BASE_URL + property.poster_url
             Log.d("MyAdapter", "Loading image URL: ${property.poster_url}")

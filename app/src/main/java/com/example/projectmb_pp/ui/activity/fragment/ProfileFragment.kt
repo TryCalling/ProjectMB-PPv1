@@ -22,25 +22,24 @@ import java.util.UUID
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var binding: FragmentProfileBinding
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
     private val db = FirebaseFirestore.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
-
     private var selectedImageUri: Uri? = null
 
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data = result.data
-            data?.let { intent ->
-                val selectedImageUri = intent.data
-                selectedImageUri?.let {
-                    Log.d("ProfileFragment", "Selected Image URI: $it")
+            data?.data?.let { uri ->
+                Log.d("ProfileFragment", "Selected Image URI: $uri")
+                if (isAdded && context != null) {
                     Glide.with(requireContext())
-                        .load(it)
+                        .load(uri)
                         .into(binding.imageViewProfile)
-                    this.selectedImageUri = it
                 }
+                selectedImageUri = uri
             }
         }
     }
@@ -49,7 +48,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -75,30 +74,31 @@ class ProfileFragment : Fragment() {
                         Log.d("ProfileFragment", "User data retrieved: $userProfile")
 
                         // Update UI with user data
-                        userProfile?.let { profile ->
-                            binding.apply {
-                                textName.text = profile.name
-                                textEmail.editText?.setText(profile.email)
-                                textNBPhone.editText?.setText(profile.mobile)
+                        if (isAdded && context != null) {
+                            userProfile?.let { profile ->
+                                binding.apply {
+                                    textName.text = profile.name
+                                    textEmail.editText?.setText(profile.email)
+                                    textNBPhone.editText?.setText(profile.mobile)
 
-                                profile.profileImageUrl?.let { imageUrl -> // Check and load existing profile image
-                                    Glide.with(requireContext())
-                                        .load(imageUrl)
-                                        .into(binding.imageViewProfile)
-
+                                    profile.profileImageUrl?.let { imageUrl -> // Check and load existing profile image
+                                        Glide.with(requireContext())
+                                            .load(imageUrl)
+                                            .into(binding.imageViewProfile)
+                                    }
                                 }
                             }
                         }
-
                     } else {
                         Log.d("ProfileFragment", "User document does not exist")
                     }
                 }
                 .addOnFailureListener { exception ->
                     // Handle failure
-                    Log.e("ProfileFragment", "Error retrieving user data: ${exception.message}")
-                    Toast.makeText(requireContext(), "Error retrieving user data: ${exception.message}", Toast.LENGTH_SHORT).show()
-
+                    if (isAdded && context != null) {
+                        Log.e("ProfileFragment", "Error retrieving user data: ${exception.message}")
+                        Toast.makeText(requireContext(), "Error retrieving user data: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    }
                 }
         }
 
@@ -112,8 +112,10 @@ class ProfileFragment : Fragment() {
             updateUserInfo()
             // Upload profile image
             uploadProfileImage()
+            if (isAdded && context != null) {
+                Toast.makeText(requireContext(), "Updated your profile successfully...", Toast.LENGTH_SHORT).show()
+            }
         }
-
     }
 
     private fun openImagePicker() {
@@ -121,23 +123,6 @@ class ProfileFragment : Fragment() {
         intent.type = "image/*"
         resultLauncher.launch(intent)
     }
-
-
-//Old
-//    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            val data = result.data
-//            data?.let { intent ->
-//                val selectedImageUri = intent.data
-//                selectedImageUri?.let {
-//                    binding.imageViewProfile.setImageURI(it)
-//                    this.selectedImageUri = it
-//                }
-//            }
-//        }
-//    }
-
-
 
     private fun uploadProfileImage() {
         selectedImageUri?.let { uri ->
@@ -154,29 +139,32 @@ class ProfileFragment : Fragment() {
                         val userRef = db.collection("users").document(userId)
                         userRef.update("profileImageUrl", url.toString())
                             .addOnSuccessListener {
-                                Toast.makeText(requireContext(), "Profile image updated successfully!", Toast.LENGTH_SHORT).show()
-                                // Update UI with new profile image
-
-//                                updateUserProfileUI(url.toString()) // Call updateUserProfileUI to update profile image
-
-                                Glide.with(requireContext())
-                                    .load(url)
-                                    .into(binding.imageViewProfile) // Update the ImageView
+                                if (isAdded && context != null) {
+                                    Toast.makeText(requireContext(), "Profile image updated successfully!", Toast.LENGTH_SHORT).show()
+                                    // Update UI with new profile image
+                                    Glide.with(requireContext())
+                                        .load(url)
+                                        .into(binding.imageViewProfile) // Update the ImageView
+                                }
                             }
                             .addOnFailureListener { exception ->
-                                Toast.makeText(requireContext(), "Failed to update profile image: ${exception.message}", Toast.LENGTH_SHORT).show()
+                                if (isAdded && context != null) {
+                                    Toast.makeText(requireContext(), "Failed to update profile image: ${exception.message}", Toast.LENGTH_SHORT).show()
+                                }
                             }
                     }
                 }
             }.addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Failed to upload image: ${exception.message}", Toast.LENGTH_SHORT).show()
+                if (isAdded && context != null) {
+                    Toast.makeText(requireContext(), "Failed to upload image: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }
             }
         } ?: run {
-            Toast.makeText(requireContext(), "No Data selected!", Toast.LENGTH_SHORT).show()
+            if (isAdded && context != null) {
+                Toast.makeText(requireContext(), "No Data selected!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
-
-
 
     private fun updateUserInfo() {
         val currentUser = firebaseAuth.currentUser
@@ -190,12 +178,20 @@ class ProfileFragment : Fragment() {
                 "email" to email,
                 "mobile" to mobile
             )).addOnSuccessListener {
-                Toast.makeText(requireContext(), "User info updated successfully!", Toast.LENGTH_SHORT).show()
+                if (isAdded && context != null) {
+                    Toast.makeText(requireContext(), "User info updated successfully!", Toast.LENGTH_SHORT).show()
+                }
             }.addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Failed to update user info: ${exception.message}", Toast.LENGTH_SHORT).show()
+                if (isAdded && context != null) {
+                    Toast.makeText(requireContext(), "Failed to update user info: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
+

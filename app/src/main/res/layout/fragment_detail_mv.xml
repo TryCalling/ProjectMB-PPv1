@@ -61,6 +61,16 @@
                 android:layout_marginBottom="8dp"
                 android:text="Title" />
 
+            <TextView
+                android:id="@+id/releaseDate"
+                android:text="release date"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
 
@@ -105,14 +115,6 @@
                         android:layout_marginStart="2sp"
                         android:textColor="@color/white"
                         android:text="0"/>
-
-                    <TextView
-                        android:id="@+id/likeOrUnlikeCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/like"
-                        android:textColor="@android:color/white"
-                        android:layout_marginStart="1dp" />
 
                     <View
                         android:layout_width="0.8dp"
@@ -270,7 +272,6 @@
                     android:layout_marginTop="5dp"
                     android:textSize="16sp"
                     android:ellipsize="end"
-                    android:maxLines="6"
                     android:textColor="@android:color/white"
                     android:layout_marginBottom="8dp"
                     android:text="Description" />
