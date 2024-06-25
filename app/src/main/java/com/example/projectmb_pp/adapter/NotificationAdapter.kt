@@ -21,8 +21,8 @@ class NotificationAdapter(
         fun bind(notification: Property) {
             binding.notificationTitle.text = notification.title
             binding.notificationContent.text = notification.synopsis
-//            binding.notificationTime.text = notification.release_date
-            binding.notificationTime.text = "${notification.release_date} Minutes ago"
+            binding.notificationTime.text = notification.release_date
+//            binding.notificationTime.text = "${notification.release_date} Minutes ago"
 
             val fullUrl = BASE_URL + notification.poster_url
             Log.d("NotificationAdapter", "Loading image URL: $fullUrl")

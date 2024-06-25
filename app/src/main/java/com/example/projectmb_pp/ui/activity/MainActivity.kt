@@ -31,25 +31,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
 
-
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var db: FirebaseFirestore
+    private lateinit var firebaseFirestore: FirebaseFirestore
     private var callback: OnBackPressedCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        // Add callback for handling back press ========new
-//        callback = object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                // Custom back pressed logic
-//            }
-//        }
 
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -57,7 +49,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
         onBackPressedDispatcher.addCallback(this, callback!!)
-
 
         // Initialize LikedItemsRepository
         SavedItemsRepository.initialize(applicationContext)
@@ -69,38 +60,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         firebaseAuth = FirebaseAuth.getInstance()
 
         // Initialize Firebase components
-        db = FirebaseFirestore.getInstance()
-//        Style ti 1
-//            val bottomNavigationView = binding.btnnavView
-//            bottomNavigationView.setOnItemSelectedListener { ... }
+        firebaseFirestore = FirebaseFirestore.getInstance()
 
-        // Style ti 2
+        // Setup Bottom Navigation View
         binding.btnnavView.setOnItemSelectedListener { menuItem ->
-
             when (menuItem.itemId) {
-                R.id.iconHome -> {
-                    replaceFragment(HomeFragment())
-                    true
-                }
-                R.id.iconFav -> {
-                    replaceFragment(FavoriteFragment())
-                    true
-                }
-                R.id.iconProfile -> {
-                    replaceFragment(ProfileFragment())
-                    true
-                }
-                R.id.iconNotification -> {
-                    replaceFragment(NotificationFragment())
-                    true
-                }
+                R.id.iconHome -> replaceFragment(HomeFragment())
+                R.id.iconFav -> replaceFragment(FavoriteFragment())
+                R.id.iconProfile -> replaceFragment(ProfileFragment())
+                R.id.iconNotification -> replaceFragment(NotificationFragment())
                 else -> false
             }
-
+            true
         }
         replaceFragment(HomeFragment())
 
-        //set click open navigationLayOut
+        // Set click open navigationLayOut
         binding.navigationDrawer.setOnClickListener {
             binding.drawerLayout.openDrawer(binding.navView)
         }
@@ -128,45 +103,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Load the user's name and email from Firestore and update UI
         loadUserData()
-
     }
 
     override fun attachBaseContext(newBase: Context) {
         val sharedPreferences = newBase.getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val locale = Locale(sharedPreferences.getString("My_Lang","en")!!)
-        Log.d("language",sharedPreferences.getString("My_Lang","en")!!)
+        val locale = Locale(sharedPreferences.getString("My_Lang", "en")!!)
+        Log.d("language", sharedPreferences.getString("My_Lang", "en")!!)
         Locale.setDefault(locale)
-        val context = languageChange(newBase,locale)
+        val context = languageChange(newBase, locale)
         super.attachBaseContext(context)
     }
 
     private fun languageChange(context: Context, locale: Locale): Context {
         var tempContext = context
         val res = tempContext.resources
-        val configuration =res.configuration
+        val configuration = res.configuration
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             configuration.setLocale(locale)
             val localList = LocaleList(locale)
             LocaleList.setDefault(localList)
             configuration.setLocales(localList)
             tempContext = tempContext.createConfigurationContext(configuration)
-        }else{
+        } else {
             configuration.locale = locale
-            res.updateConfiguration(configuration,res.displayMetrics)
+            res.updateConfiguration(configuration, res.displayMetrics)
         }
         return tempContext
     }
 
-    //New
     private fun loadUserData() {
         // Get the current user ID
         val userId = firebaseAuth.currentUser?.uid
+        Log.d("loadUserData", "Current User ID: $userId")
 
         // Check if the user ID is not null before proceeding
         userId?.let { uid ->
             // Get reference to the user document in Firestore
-            val userRef = db.collection("users").document(uid)
+            val userRef = firebaseFirestore.collection("users").document(uid)
 
             // Retrieve user data
             userRef.get()
@@ -198,40 +172,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Toast.makeText(this, "User is not authenticated", Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
-//old
-//    private fun loadUserData() {
-//        // Get the current user ID
-//        val userId = firebaseAuth.currentUser?.uid
-//
-//        // Check if the user ID is not null before proceeding
-//        userId?.let { uid ->
-//            // Get reference to the user document in Firestore
-//            val userRef = db.collection("users").document(uid)
-//
-//            // Retrieve user data
-//            userRef.get()
-//                .addOnSuccessListener { documentSnapshot ->
-//                    if (documentSnapshot.exists()) {
-//                        // Get user's name and email from Firestore
-//                        val name = documentSnapshot.getString("name")
-//                        val email = documentSnapshot.getString("email")
-//                        val profileImageUrl = documentSnapshot.getString("profileImageUrl")
-//
-//                        // Update UI with user's name and email
-//                        updateNavigationHeader(name, email, profileImageUrl!!)
-//                    }
-//                }
-//                .addOnFailureListener { exception ->
-//                    // Handle failure
-//                    Toast.makeText(this, "Failed to load user data", Toast.LENGTH_SHORT).show()
-//                }
-//        }
-//    }
-
-    private fun updateNavigationHeader(name: String?, email: String?, cardprofile: String) {
+    private fun updateNavigationHeader(name: String?, email: String?, profileImageUrl: String) {
         // Update TextViews in the navigation header with user's name and email
         val headerView = binding.navView.getHeaderView(0)
         val txName: TextView = headerView.findViewById(R.id.txName)
@@ -242,13 +183,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         txEmail.text = email
 
         // Load profile image using Glide
-        if (!cardprofile.isNullOrEmpty()) {
+        if (!profileImageUrl.isNullOrEmpty()) {
             Glide.with(this)
-                .load(cardprofile)
+                .load(profileImageUrl)
                 .placeholder(R.drawable.profile) // Placeholder image
                 .into(imageViewProfile)
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -284,11 +224,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return true
             }
             R.id.navD_Setting -> {
-                replaceFragment(SettingFragment{
+                replaceFragment(SettingFragment {
                     val intent = intent
                     finish()
-                        startActivity(intent)
-
+                    startActivity(intent)
                 })
                 drawerLayout.closeDrawer(GravityCompat.START)
                 Toast.makeText(this, "It's Loading...", Toast.LENGTH_SHORT).show()
@@ -310,13 +249,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 return true
             }
-            // Add more cases for other menu items if needed
-
-            else -> {
-                return false
-            }
+            else -> return false
         }
-
     }
 
     // Replace Fragment in the container
@@ -342,17 +276,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
-//    fun resetBackCallback() {
-//        callback?.remove()
-//        callback = object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                // Custom back pressed logic
-//            }
-//        }
-//        onBackPressedDispatcher.addCallback(this, callback!!)
-//    }
-
-
-
 }

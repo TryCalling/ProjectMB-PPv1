@@ -69,14 +69,12 @@
 
         <string-array name="genre_array">
                 <item>បង្ហាញទាំងអស់</item>
-                <item>ខ្សែភាពយន្តខ្លាចរន្ធត់</item>
-                <item>រឿងស្នេហា</item>
-                <item>កំប្លែង</item>
-                <item>អាណឹមេ</item>
-                <item>វិមានកុំព្យូទ័រ</item>
-                <item>វាយលុក</item>
-                <item>រ៉ូមែនទិក</item>
+                <item>កំប្លែង</item> <!-- Funny -->
+                <item>សកម្មភាព</item> <!-- Action -->
+                <item>រ៉ូមែនទិក</item> <!-- Romantic -->
+                <item>ខ្មោច</item> <!-- Ghost -->
+                <item>ការអប់រំ</item> <!-- Education -->
+                <item>ប្រវត្តិសាស្រ្ត</item> <!-- History -->
         </string-array>
-
 
 </resources>

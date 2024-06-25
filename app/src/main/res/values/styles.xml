@@ -71,13 +71,12 @@
         <!-- Other string resources -->
     <string-array name="genre_array">
         <item>Show All</item>
-        <item>Horror</item>
-        <item>Love Story</item>
         <item>Funny</item>
-        <item>Anime</item>
         <item>Action</item>
-        <item>Adventure</item>
         <item>Romantic</item>
+        <item>Ghost</item>
+        <item>Education</item>
+        <item>History</item>
     </string-array>
 
 

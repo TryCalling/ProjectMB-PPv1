@@ -58,22 +58,17 @@ class ProfileFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val currentUser: FirebaseUser? = firebaseAuth.currentUser
 
-        // Check if user is authenticated
         currentUser?.let { user ->
             val userId: String = user.uid
 
-            // Get reference to the user document in Firestore
             val userRef = db.collection("users").document(userId)
 
-            // Retrieve user data
             userRef.get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
-                        // Convert document snapshot to UserProfile object
                         val userProfile = documentSnapshot.toObject(DataProfile::class.java)
                         Log.d("ProfileFragment", "User data retrieved: $userProfile")
 
-                        // Update UI with user data
                         if (isAdded && context != null) {
                             userProfile?.let { profile ->
                                 binding.apply {
@@ -81,7 +76,7 @@ class ProfileFragment : Fragment() {
                                     textEmail.editText?.setText(profile.email)
                                     textNBPhone.editText?.setText(profile.mobile)
 
-                                    profile.profileImageUrl?.let { imageUrl -> // Check and load existing profile image
+                                    profile.profileImageUrl?.let { imageUrl ->
                                         Glide.with(requireContext())
                                             .load(imageUrl)
                                             .into(binding.imageViewProfile)
@@ -94,7 +89,6 @@ class ProfileFragment : Fragment() {
                     }
                 }
                 .addOnFailureListener { exception ->
-                    // Handle failure
                     if (isAdded && context != null) {
                         Log.e("ProfileFragment", "Error retrieving user data: ${exception.message}")
                         Toast.makeText(requireContext(), "Error retrieving user data: ${exception.message}", Toast.LENGTH_SHORT).show()
@@ -102,15 +96,12 @@ class ProfileFragment : Fragment() {
                 }
         }
 
-        // Set click listener for updating profile image
         binding.layoutUpdatePF.setOnClickListener {
             openImagePicker()
         }
 
         binding.btnUpdate.setOnClickListener {
-            // Update email and mobile
             updateUserInfo()
-            // Upload profile image
             uploadProfileImage()
             if (isAdded && context != null) {
                 Toast.makeText(requireContext(), "Updated your profile successfully...", Toast.LENGTH_SHORT).show()
@@ -132,7 +123,6 @@ class ProfileFragment : Fragment() {
             val uploadTask = imageRef.putFile(uri)
             uploadTask.addOnSuccessListener {
                 imageRef.downloadUrl.addOnSuccessListener { url ->
-                    // Update profile image URL in Firestore
                     val currentUser = firebaseAuth.currentUser
                     currentUser?.let { user ->
                         val userId = user.uid
@@ -141,10 +131,9 @@ class ProfileFragment : Fragment() {
                             .addOnSuccessListener {
                                 if (isAdded && context != null) {
                                     Toast.makeText(requireContext(), "Profile image updated successfully!", Toast.LENGTH_SHORT).show()
-                                    // Update UI with new profile image
                                     Glide.with(requireContext())
                                         .load(url)
-                                        .into(binding.imageViewProfile) // Update the ImageView
+                                        .into(binding.imageViewProfile)
                                 }
                             }
                             .addOnFailureListener { exception ->
@@ -194,4 +183,3 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 }
-

@@ -45,14 +45,14 @@ class HomeFragment : Fragment() {
 
         // ImageSliderView setup
         val imageList = arrayListOf(
-            SlideModel("https://twt-thumbs.washtimes.com/media/image/2022/12/04/gg22-movies-900_c2-0-3003-1750_s1770x1032.jpg?71b58e388ab29c2a7847401d3c7757678ee5e861"),
-            SlideModel("https://www.soundandvision.com/images/styles/600_wide/public/516movies.promo_.jpg"),
-            SlideModel("https://images.thedirect.com/media/article_full/spider-man-no-way-home-blu-ray.jpg"),
-            SlideModel("https://i.ytimg.com/vi/RJoxvXQ7sJs/maxresdefault.jpg"),
-            SlideModel("https://greenhouse.hulu.com/app/uploads/sites/11/Comedy-Movies-for-Kids-Hulu.jpg"),
-            SlideModel("https://static1.srcdn.com/wordpress/wp-content/uploads/2023/11/despicable-me-movies.jpg"),
-            SlideModel("https://i.ebayimg.com/images/g/DdIAAOSwMLdgznPF/s-l1200.webp"),
-            SlideModel("https://img.freepik.com/premium-photo/4k-movie-concept_103577-3976.jpg"),
+            SlideModel("https://cdn.kiripost.com/static/images/Bormey.2e16d0ba.fill-960x540.jpg"),
+            SlideModel("https://i.ytimg.com/vi/S4CBzK6SRew/hqdefault.jpg"),
+            SlideModel("https://tickets.legend.com.kh/CDN/Image/Entity/FilmPosterGraphic/h-HO00001477?width=48&height=48"),
+            SlideModel("https://i.ytimg.com/vi/I-SAl5aQ9Qc/maxresdefault.jpg"),
+            SlideModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy5z4YZNMNOcnrNuDTYMTGwCAJYhNdxRVAFA&s"),
+            SlideModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4KrhRuORSSQCY58MvFdWjm9fu-iPrOAmlxg&s"),
+            SlideModel("https://tickets.legend.com.kh/CDN/media/entity/get/FilmBackdrop/f-A000001142?width=1024&referenceScheme=Global&allowPlaceHolder=true&fallbackMediaType=FilmTitleGraphic"),
+            SlideModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6_Qym2FEZWNQapWGXhIXZE4IgK_higxO5bCje8EaoNGL4Rz279JCSVxoAVGgpCkXysg&usqp=CAU"),
 
 //            SlideModel("https://www.wooribank.com.kh/wp-content/uploads/2023/11/Major_Web-2-1.jpg"),
 //            SlideModel("https://pbs.twimg.com/media/ECjugfFUIAILg7I.jpg"),
@@ -130,13 +130,12 @@ class HomeFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 when (position) {
                     0 -> getAllData() // Show All
-                    1 -> fetchMoviesByGenre(1, "Horror Movies") // Horror
-                    2 -> fetchMoviesByGenre(2, "Love Story") // Funny
-                    3 -> fetchMoviesByGenre(3, "Funny") // Funny
-                    4 -> fetchMoviesByGenre(4, "Anime") // Anime
-                    5 -> fetchMoviesByGenre(5, "Action") // Action
-                    6 -> fetchMoviesByGenre(6, "Adventure") // Adventure
-                    7 -> fetchMoviesByGenre(7, "Romantic") // Romantic
+                    1 -> fetchMoviesByGenre(1, "Funny") // Horror
+                    2 -> fetchMoviesByGenre(2, "Action") // Funny
+                    3 -> fetchMoviesByGenre(3, "Romantic") // Funny
+                    4 -> fetchMoviesByGenre(4, "Ghost") // Action
+                    5 -> fetchMoviesByGenre(5, "Education") // Adventure
+                    6 -> fetchMoviesByGenre(6, "History") // Romantic
                 }
             }
 
